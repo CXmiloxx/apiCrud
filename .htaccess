@@ -1,9 +1,9 @@
 # Activar la reescritura de URLs
 RewriteEngine On
 
-# Si el archivo o directorio solicitado existe, usa eso directamente
+# Si el archivo o directorio solicitado no existe, usa el enrutador
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# De lo contrario, redirige la solicitud a index.php
+# Reescribe las URLs para pasarlas a index.php
 RewriteRule ^(.*)$ index.php?/$1 [L]
