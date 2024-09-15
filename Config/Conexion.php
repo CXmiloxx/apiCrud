@@ -4,14 +4,14 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type");
 
-$user = 'root';
-$databasename ='';
-$password = '';
-$server = 'localhost';
+$host = 'bfromhyapic8gh9mkwcu-mysql.services.clever-cloud.com';
+$databasename ='bfromhyapic8gh9mkwcu';
+$user = 'uoovfcgryqtxbrhy';
+$password = 'rYzoOJeJIGSI1SjIBbFw';
 
 try{
-    $base_datos = new PDO("mysql:host=$server, bdname=$databasename", $password, $user);
-    $base_datos->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $base_de_datos = new PDO("mysql:host=$host; dbname=$databasename", $user, $password);
+    $base_de_datos->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }catch(Exception $e){
     echo json_encode(formatearRespuesta(false, "Error al conectar con la base de datos: " . $e->getMessage()));
 }
