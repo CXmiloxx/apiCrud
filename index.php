@@ -176,7 +176,7 @@ if (file_exists($filepath)) {
 } else {
     echo json_encode([
         'status' => false,
-        'message' => 'El archivo correspondiente a la acción y recurso solicitados no existe.',
+        'message' => 'El archivo correspondiente a la accion y recurso solicitados no existe.',
         'details' => [
             'resource' => $resource,
             'action' => $action,
