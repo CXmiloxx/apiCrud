@@ -1,7 +1,6 @@
 <?php
-
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 header("Content-Type: application/json");
 $request = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
@@ -11,13 +10,13 @@ $action = isset($request[1]) ? $request[1] : $_SERVER['REQUEST_METHOD'];
 if (empty($resource)) {
     echo json_encode([
         'status' => true,
-        'message' => 'Bienvenido a mi api ',
+        'message' => 'Bienvenido a la API',
         'rutes' => [
             'usuarios' => [
-                'GET' => 'Listado de usuarios',
-                'POST' => 'Crear un nuevo usuario',
-                'PUT' => 'Actualizar un usuario existente',
-                'DELETE' => 'Borrar un usuario'
+                'GET' => '/usuarios',
+                'POST' => '/usuarios',
+                'PUT' => '/usuarios/{id}',
+                'DELETE' => '/usuarios/{id}'
             ]
         ]
     ]);
@@ -30,7 +29,7 @@ if (file_exists($filepath)) {
 } else {
     echo json_encode([
         'status' => false,
-        'message' => 'El archivo correspondiente a la accion y recurso solicitados no existe.',
+        'message' => 'El archivo correspondiente a la acción y recurso solicitados no existe.',
         'details' => [
             'resource' => $resource,
             'action' => $action,
@@ -38,3 +37,4 @@ if (file_exists($filepath)) {
         ]
     ]);
 }
+?>
