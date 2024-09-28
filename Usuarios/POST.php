@@ -17,7 +17,7 @@ if ($metodo == 'POST') {
         $nombre = $datos['nombre'];
         $apellido = $datos['apellido'];
         $email = $datos['email'];
-        $contra = password_hash($datos['contra'], PASSWORD_DEFAULT);
+        $contra = $datos['contra'];
 
         try {
             $query = 'SELECT COUNT(*) FROM usuarios WHERE email = :ema';
