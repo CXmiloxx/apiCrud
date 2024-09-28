@@ -27,7 +27,7 @@ if ($metodo == 'PUT') {
                     $nombre = $datos['nombre'];
                     $apellido = $datos['apellido'];
                     $email = $datos['email'];
-                    $contra = password_hash($datos['contra'], PASSWORD_BCRYPT);
+                    $contra = $datos['contra'];
 
                     $query = "UPDATE usuarios SET nombre = :nom, apellido = :ape, email = :ema, contra = :con WHERE id = :id";
                     $consulta = $base_de_datos->prepare($query);
