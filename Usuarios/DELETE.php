@@ -13,7 +13,7 @@ $controlador = explode('/', $uri);
 $idUsuario = isset($controlador[3]) && isset($controlador[3]) ? $controlador[3] : null;
 $metodo = $_SERVER['REQUEST_METHOD'];
 
-    if($metodo = 'DLELETE'){
+    if($metodo == 'DLELETE'){
         try{
             if($idUsuario){
                 try{
