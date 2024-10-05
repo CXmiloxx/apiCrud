@@ -29,7 +29,7 @@ if ($metodo == 'PUT') {
                     $correo = $datos['correo'];
                     $direccion = $datos['direccion'];
 
-                    $query = "UPDATE datos SET nombre = :nom, telefono = :ape, correo = :cor, direccion = :dire WHERE idDstos = :id";
+                    $query = "UPDATE datos SET nombre = :nom, telefono = :ape, correo = :cor, direccion = :dire WHERE idDatos = :id";
                     $consulta = $base_de_datos->prepare($query);
                     $consulta->bindParam(':nom', $nombre);
                     $consulta->bindParam(':ape', $telefono);
