@@ -10,19 +10,19 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $controlador = explode('/', $uri);
-$idUsuario = isset($controlador[3]) ? $controlador[3] : null;
+$idDatos = isset($controlador[3]) ? $controlador[3] : null;
 $metodo = $_SERVER['REQUEST_METHOD'];
 
 if($metodo == 'DELETE'){
     try {
-        if ($idUsuario) {
+        if ($idDatos) {
             try {
                 $query = 'DELETE FROM datos WHERE idDatos = ?';
                 $consulta = $base_de_datos->prepare($query);
-                $resultado = $consulta->execute([$idUsuario]);
+                $resultado = $consulta->execute([$idDatos]);
 
                 if ($resultado && $consulta->rowCount()) {
-                    $respuesta = formatearRespuesta(true, "Usuario eliminado exitosamente.");
+                    $respuesta = formatearRespuesta(true, "Datos de Usuario eliminado exitosamente.");
                 } else {
                     $respuesta = formatearRespuesta(false, "No se pudo eliminar el usuario. Verifica el ID o si el usuario existe.");
                 }

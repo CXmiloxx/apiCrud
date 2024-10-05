@@ -10,14 +10,14 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-W
 $metodo = $_SERVER['REQUEST_METHOD'];
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $controlador = explode('/', $uri);
-$idUsuario = isset($controlador[3]) && is_numeric($controlador[3]) ? $controlador[3] : null;
+$idDatos = isset($controlador[3]) && is_numeric($controlador[3]) ? $controlador[3] : null;
 
 if ($metodo == 'PUT') {
     try {
-        if ($idUsuario) {
-            $queryUsuarioExistente = 'SELECT COUNT(*) FROM usuarios WHERE id = ?';
+        if ($idDatos) {
+            $queryUsuarioExistente = 'SELECT COUNT(*) FROM datos WHERE idDatos = ?';
             $usuarioExistente = $base_de_datos->prepare($queryUsuarioExistente);
-            $usuarioExistente->execute([$idUsuario]);
+            $usuarioExistente->execute([$idDatos]);
 
             if ($usuarioExistente->fetchColumn() > 0) {
                 $contenido = trim(file_get_contents('php://input'));
@@ -29,18 +29,18 @@ if ($metodo == 'PUT') {
                     $email = $datos['email'];
                     $contra = $datos['contra'];
 
-                    $query = "UPDATE usuarios SET nombre = :nom, apellido = :ape, email = :ema, contra = :con WHERE id = :id";
+                    $query = "UPDATE datos SET nombre = :nom, apellido = :ape, email = :ema, contra = :con WHERE idDstos = :id";
                     $consulta = $base_de_datos->prepare($query);
                     $consulta->bindParam(':nom', $nombre);
                     $consulta->bindParam(':ape', $apellido);
                     $consulta->bindParam(':ema', $email);
                     $consulta->bindParam(':con', $contra);
-                    $consulta->bindParam(':id', $idUsuario);
+                    $consulta->bindParam(':id', $idDatos);
 
                     $resultado = $consulta->execute();
 
                     if ($resultado && $consulta->rowCount() > 0) {
-                        $respuesta = formatearRespuesta(true, "Usuario actualizado correctamente");
+                        $respuesta = formatearRespuesta(true, "Datos de Usuario actualizado correctamente");
                     } else {
                         $respuesta = formatearRespuesta(false, "No se pudo actualizar el usuario. Verifica los datos y vuelve a intentarlo.");
                     }
