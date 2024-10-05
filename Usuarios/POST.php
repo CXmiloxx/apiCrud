@@ -17,8 +17,7 @@ if ($metodo == 'POST') {
         $nombre = $datos['nombre'];
         $apellido = $datos['apellido'];
         $email = $datos['email'];
-        $contra = $datos['contra'];
-
+        $contra = password_hash($datos['contra'], PASSWORD_BCRYPT);
         try {
             $query = 'SELECT COUNT(*) FROM usuarios WHERE email = :ema';
             $consultaCorreo = $base_de_datos->prepare($query);
