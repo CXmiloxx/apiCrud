@@ -23,18 +23,18 @@ if ($metodo == 'PUT') {
                 $contenido = trim(file_get_contents('php://input'));
                 $datos = json_decode($contenido, true);
 
-                if (isset($datos['nombre'], $datos['apellido'], $datos['email'], $datos['contra'])) {
+                if (isset($datos['nombre'], $datos['telefono'], $datos['correo'], $datos['direccion'])) {
                     $nombre = $datos['nombre'];
-                    $apellido = $datos['apellido'];
-                    $email = $datos['email'];
-                    $contra = $datos['contra'];
+                    $telefono = $datos['telefono'];
+                    $correo = $datos['correo'];
+                    $direccion = $datos['direccion'];
 
-                    $query = "UPDATE datos SET nombre = :nom, apellido = :ape, email = :ema, contra = :con WHERE idDstos = :id";
+                    $query = "UPDATE datos SET nombre = :nom, telefono = :ape, correo = :cor, direccion = :dire WHERE idDstos = :id";
                     $consulta = $base_de_datos->prepare($query);
                     $consulta->bindParam(':nom', $nombre);
-                    $consulta->bindParam(':ape', $apellido);
-                    $consulta->bindParam(':ema', $email);
-                    $consulta->bindParam(':con', $contra);
+                    $consulta->bindParam(':ape', $telefono);
+                    $consulta->bindParam(':cor', $correo);
+                    $consulta->bindParam(':dire', $direccion);
                     $consulta->bindParam(':id', $idDatos);
 
                     $resultado = $consulta->execute();
