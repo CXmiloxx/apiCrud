@@ -17,7 +17,7 @@ if($metodo == 'DELETE'){
     try {
         if ($idUsuario) {
             try {
-                $query = 'DELETE FROM usuarios WHERE id = ?';
+                $query = 'DELETE FROM datos WHERE idDatos = ?';
                 $consulta = $base_de_datos->prepare($query);
                 $resultado = $consulta->execute([$idUsuario]);
 

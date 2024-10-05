@@ -9,7 +9,7 @@ include './Config/Conexion.php';
     if($metodo == 'GET'){
         try{
             if($idUsuario){
-                $consulta = $base_de_datos->prepare('SELECT * FROM usuarios WHERE idUsuario = ?');
+                $consulta = $base_de_datos->prepare('SELECT * FROM datos WHERE idDatos = ?');
                 $consulta->execute([$idUsuario]);
                 $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
@@ -21,7 +21,7 @@ include './Config/Conexion.php';
                 }
 
             }else{
-                $query = 'SELECT * FROM usuarios';
+                $query = 'SELECT * FROM datos';
                 $consulta = $base_de_datos->query($query);
                 $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
