@@ -36,7 +36,7 @@ if ($metodo == 'POST') {
                     $consulta->bindParam(':con', $contra);
 
                     if ($consulta->execute()) {
-                        $respuesta = formatearRespuesta(true, "El usuario se ha insertado correctamente.");
+                        $respuesta = formatearRespuesta(true, "El usuario se ha creado correctamente.");
                     } else {
                         $respuesta = formatearRespuesta(false, "No se pudo insertar el usuario. Verifica los datos y vuelve a intentarlo.");
                     }
