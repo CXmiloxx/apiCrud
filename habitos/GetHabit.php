@@ -9,12 +9,12 @@ include './Config/Conexion.php';
     if($metodo == 'GET'){
         try{
             if($idUsuario){
-                $consulta = $base_de_datos->prepare('SELECT * FROM datos WHERE idUsuario = ?');
+                $consulta = $base_de_datos->prepare('SELECT * FROM habitos WHERE idUsuario = ?');
                 $consulta->execute([$idUsuario]);
                 $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
                 if($resultado){
-                    $respuesta = formatearRespuesta(true, "Informacion de usuario encontrado exitosamente.", ['usuario' => $resultado]);
+                    $respuesta = formatearRespuesta(true, "Informacion de usuario encontrado exitosamente.", ['habitos' => $resultado]);
                 
                 }else{
                     $respuesta = formatearRespuesta(false, "No se encontró ningún usuario con el ID especificado.");
@@ -36,5 +36,4 @@ include './Config/Conexion.php';
     header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
     header('Content-Type: application/json');
 echo json_encode($respuesta);
-    
 ?>
