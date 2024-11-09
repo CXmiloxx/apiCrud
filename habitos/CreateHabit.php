@@ -13,7 +13,7 @@ $metodo = $_SERVER['REQUEST_METHOD'];
 
 if ($metodo == 'POST') {
     $contenido = trim(file_get_contents('php://input'));
-    $uri = parse_url($_SERVER['REQUEST_METHOD'], PHP_URL_PATH);
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $controlador = explode('/', $uri);
     $idUsuario = isset($controlador[3]) && is_numeric($controlador[3]) ? $controlador[3] : null;
     $datos = json_decode($contenido, true);
